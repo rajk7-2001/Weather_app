@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        body{
+            color: white;
+            
+        }
+        .project{
+            display: flex;
+            justify-content: center;
+        }
+        .outer{
+            border-radius: 15px;
+            height:600px;
+            width:600px;
+            background-image: url('../static/background.jpg');
+            background-size: 100% 100%;
+            box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.5);
+        }
+        .search{
+            width: 98%;
+            margin-left: 5px;
+            margin-top: 10px;
+            border-radius: 10px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+    
+        }
+        .search form{
+            width: 100%;
+            height:100%;
+        }
+        .search input{
+            border:none;
+            outline: none;
+            height:95% ;
+            width:88%;
+            font-size: 20px;
+            margin-left:10px;
+        }
+        .search button{
+            border:none;
+            font-size: 20px;
+            background-color: white;
+        }
+        h1{
+            text-align: center;
+        
+        }
+        .box{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .box .align{
+            height:350px;
+            width:300px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+        .image{
+            height:180px;
+            width:80%;
+        }
+        .temp{
+            width: 100%;
+            height: 50px;
+            text-align: center;
+            font-size: 50px;
+        }
+        .weather{
+            width: 100%;
+            height: 40px;
+            font-size: 40px;
+            text-align: center;
+            padding-bottom: 10px;
+        }
+        
+    .image img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain; 
+    }
+
+        
+    </style>
+</head>
+
+<body>
+    <h1 style="color: black;">Weather app</h1>
+    <div class="project">
+    <div class="outer">
+        <div class="search">
+            <form action="" method="post">
+                {% csrf_token %}
+            <input type="text" name="city" id="" placeholder="Search city">
+            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+        </div>
+        {% if error %}
+        <div class="error">
+            <h5>{{error}}</h5>
+        </div>
+        {% else %}
+        <div class="city-name">
+            <h1>{{city}}</h1>
+        </div>
+        <div class="box">
+            <div class="align">
+                <div class="image"><img src="{{image}}" alt="Search city to view the result"></div>
+                <div class="weather"><h3>{{weather}}</h3></div><br><br>
+                <div class="temp"><h3>{{temp}}°c</h3></div>
+
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+    </div>
+</body>
+</html>
